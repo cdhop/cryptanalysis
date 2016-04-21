@@ -19,3 +19,12 @@ Example:
 
      $ python guess.py "$(cat cipher_text.txt)" "$(cat key.json)"
 
+## Vigenere
+
+Encrypt example:
+
+     $ python vigenere.py encrypt "divert troops to east ridge" white
+
+Decrypt example:
+
+     $ python vigenere.py decrypt ZPDXVPAZHSLZBHIWZBKMZNM white
