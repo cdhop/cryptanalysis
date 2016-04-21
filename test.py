@@ -3,6 +3,8 @@ import unittest
 from guess import guess
 from frequency_analysis import frequency_count
 from frequency_analysis import proximity_count
+from vigenere import encrypt_vigenere
+from vigenere import decrypt_vigenere
 
 
 class FrequencyAnalysisTest(unittest.TestCase):
@@ -65,6 +67,25 @@ class FrequencyAnalysisTest(unittest.TestCase):
         result = guess(cipher_text, key) 
  
         self.assertEqual(result, expected)
+
+    def test_encrypt_vigenere(self):
+        text = "divert troops to east ridge"
+        key = "white"
+        expected = "ZPDXVPAZHSLZBHIWZBKMZNM"
+
+        cipher_text = encrypt_vigenere(text, key)
+
+        self.assertEqual(cipher_text, expected)
+
+
+    def test_decrypt_vigenere(self):
+        cipher_text = "ZPDXVPAZHSLZBHIWZBKMZNM"
+        key = "white"
+        expected = "diverttroopstoeastridge"
+
+        text = decrypt_vigenere(cipher_text, key)
+
+        self.assertEqual(text, expected)
 
 if __name__ == "__main__":
     unittest.main()        
