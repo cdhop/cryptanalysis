@@ -3,11 +3,12 @@ import unittest
 from guess import guess
 from frequency_analysis import frequency_count
 from frequency_analysis import proximity_count
-from vigenere import encrypt_vigenere
-from vigenere import decrypt_vigenere
+from vigenere import encrypt_vigenere, decrypt_vigenere
+from occurance_analysis import count_sequences, get_occurances
 
 
 class FrequencyAnalysisTest(unittest.TestCase):
+
     def test_frequency_count(self):
         cipher_text = "THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG."
         expected = {
@@ -86,6 +87,26 @@ class FrequencyAnalysisTest(unittest.TestCase):
         text = decrypt_vigenere(cipher_text, key)
 
         self.assertEqual(text, expected)
+
+    def test_count_sequences(self):
+        text = 'BVLSORFMVWIWFGYYWXRPQXVPJHJUIVRXWVMY' 
+
+        expected = {'BVLS': [0], 'RXWV': [30], 
+           'GYYW': [13], 'QXVP': [20], 'VRXW': [29], 
+           'PJHJ': [23], 'IVRX': [28], 'XVPJ': [21], 
+           'VPJH': [22], 'LSOR': [2], 'VWIW': [8], 
+           'PQXV': [19], 'YWXR': [15], 'WXRP': [16], 
+           'FMVW': [6], 'RFMV': [5], 'FGYY': [12], 
+           'UIVR': [27], 'YYWX': [14], 'MVWI': [7], 
+           'ORFM': [4], 'IWFG': [10], 'XWVM': [31], 
+           'JHJU': [24], 'WIWF': [9], 'HJUI': [25], 
+           'JUIV': [26], 'WFGY': [11], 'VLSO': [1], 
+           'SORF': [3], 'XRPQ': [17], 'RPQX': [18]}
+
+        occurances = get_occurances(text, 4)
+        sequences = count_sequences(occurances)
+
+        self.assertEqual(sequences, expected)
 
 if __name__ == "__main__":
     unittest.main()        
