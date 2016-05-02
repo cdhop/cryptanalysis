@@ -44,7 +44,7 @@ def gcd_list(number_list):
     result = 0
     for index in range(len(number_list)):
         if index == 0:
-            result = gcd(number_list[index], number_list[index])
+            result = number_list[index]
         else:
             result = gcd(result, number_list[index])
     return result
