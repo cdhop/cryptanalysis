@@ -4,7 +4,7 @@ from guess import guess
 from frequency_analysis import frequency_count
 from frequency_analysis import proximity_count
 from vigenere import encrypt_vigenere, decrypt_vigenere
-from occurance_analysis import count_sequences, get_occurances
+from occurance_analysis import count_sequences, get_occurances, get_sequence_distances, gcd_list
 
 
 class FrequencyAnalysisTest(unittest.TestCase):
@@ -107,6 +107,24 @@ class FrequencyAnalysisTest(unittest.TestCase):
         sequences = count_sequences(occurances)
 
         self.assertEqual(sequences, expected)
+
+    def test_get_sequence_distances(self):
+        sequences = { 'ABCD': [0, 14, 49, 105],
+            'EFGH': [35, 56, 84],
+            'IJKL': [91, 112, 392]}
+        expected = {'ABCD': [14, 35, 56], 'EFGH': [21, 28], 'IJKL': [21, 280]}
+       
+        distances = get_sequence_distances(sequences)
+
+        self.assertEqual(distances, expected) 
+
+    def test_gcd_list(self):
+        number_list = [14, 28, 105, 392, 112]
+        expected = 7
+
+        result = gcd_list(number_list)
+
+        self.assertEqual(result, expected)
 
 if __name__ == "__main__":
     unittest.main()        
