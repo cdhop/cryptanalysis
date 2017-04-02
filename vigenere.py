@@ -49,6 +49,15 @@ def generate_row(shift, char_set):
     row = { key: set }
     return row
 
+def generate_alpha_string(input_string):
+    alpha_string = ''
+ 
+    for c in input_string:
+        if c.isalpha():
+            alpha_string += c
+    return alpha_string
+
+
 if __name__ == "__main__":
     if len(sys.argv) == 4:
         if sys.argv[1] == 'encrypt':
@@ -63,9 +72,11 @@ if __name__ == "__main__":
             cipher_text = sys.argv[2]
             key = sys.argv[3]
 
-            plain_text = decrypt_vigenere(cipher_text, key)
+            cipher_text_alpha = generate_alpha_string(cipher_text)
+            plain_text = decrypt_vigenere(cipher_text_alpha, key)
 
             print("Cipher Text: " + cipher_text)
+            print("Key: " + key)
             print("Plain Text: " + plain_text)         
         else:
             print("Unknown command")
