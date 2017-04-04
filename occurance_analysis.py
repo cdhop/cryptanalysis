@@ -1,5 +1,5 @@
 import sys
-from fractions import gcd 
+from math import gcd 
 
 def get_occurances(text, group_size):
     results = list()    
