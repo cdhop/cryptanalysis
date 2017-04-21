@@ -1,5 +1,5 @@
 import sys
-from fractions import gcd 
+from math import gcd 
 
 def get_occurances(text, group_size):
     results = list()    
@@ -49,9 +49,17 @@ def gcd_list(number_list):
             result = gcd(result, number_list[index])
     return result
 
+def generate_alpha_string(input_string):
+    alpha_string = ''
+ 
+    for c in input_string:
+        if c.isalpha():
+            alpha_string += c
+    return alpha_string
+
 if __name__ == "__main__":
     if len(sys.argv) == 2:
-        cipher_text = sys.argv[1]
+        cipher_text = generate_alpha_string(sys.argv[1])
         group_size = 4
 
         occurances = get_occurances(cipher_text, group_size)

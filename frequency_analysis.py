@@ -36,15 +36,25 @@ def proximity_count(text):
                         prox_dict[text[index]][text[index+1]] = prox_dict[text[index]][text[index+1]] + 1
     return prox_dict   
 
+def generate_alpha_string(input_string):
+    alpha_string = ''
+ 
+    for c in input_string:
+        if c.isalpha():
+            alpha_string += c
+    return alpha_string
+
 if __name__ == "__main__":
     if len(sys.argv) == 3:
        if sys.argv[1] == 'frequency':
-           freq_dict = frequency_count(sys.argv[2])
+           alpha_string = generate_alpha_string(sys.argv[2])
+           freq_dict = frequency_count(alpha_string)
            sorted_freq_list = sorted(freq_dict.items(), key=itemgetter(1), reverse=True)
            for element in sorted_freq_list:
                print(element[0] + ' - ' + str(element[1]))
        elif sys.argv[1] == 'prox':
-           prox_dict = proximity_count(sys.argv[2])
+           alpha_string = generate_alpha_string(sys.argv[2])
+           prox_dict = proximity_count(alpha_string)
            for key in prox_dict:
                print(key + str(prox_dict[key]))   
        else:
