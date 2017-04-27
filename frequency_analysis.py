@@ -48,10 +48,11 @@ if __name__ == "__main__":
     if len(sys.argv) == 3:
        if sys.argv[1] == 'frequency':
            alpha_string = generate_alpha_string(sys.argv[2])
+           alpha_string_length = len(alpha_string)
            freq_dict = frequency_count(alpha_string)
            sorted_freq_list = sorted(freq_dict.items(), key=itemgetter(1), reverse=True)
            for element in sorted_freq_list:
-               print(element[0] + ' - ' + str(element[1]))
+               print(element[0] + ' - ' + str(element[1]) + ' - ' + str(element[1] / alpha_string_length))
        elif sys.argv[1] == 'prox':
            alpha_string = generate_alpha_string(sys.argv[2])
            prox_dict = proximity_count(alpha_string)
