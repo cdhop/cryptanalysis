@@ -16,6 +16,7 @@ def encrypt_vigenere(text, key):
 
 def decrypt_vigenere(cipher_text, key):
     """Decrypt cipher_text using vigenere cipher"""
+    cipher_text = generate_alpha_string(cipher_text)
     vigenere_square = get_vigenere_square()
     plain_text = ''
 
